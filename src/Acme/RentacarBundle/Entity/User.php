@@ -69,6 +69,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @Gedmo\Timestampable(on="create")
      * 
      */
     private $createdAt;
@@ -77,6 +78,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -258,7 +260,6 @@ class User
      *
      * @param \DateTime $updatedAt
      * @return User
-     * @Gedmo\Timestampable(on="create")
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -271,7 +272,6 @@ class User
      * Get updatedAt
      *
      * @return \DateTime 
-     * @Gedmo\Timestampable(on="update")
      */
     public function getUpdatedAt()
     {
