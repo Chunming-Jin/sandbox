@@ -17,6 +17,7 @@ class User
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -66,6 +67,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * 
      */
     private $createdAt;
 
@@ -77,19 +79,6 @@ class User
     private $updatedAt;
 
 
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return User
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get id
