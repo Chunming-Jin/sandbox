@@ -1,0 +1,7 @@
+parameters:
+#    acme_rentacar.example.class: Acme\RentacarBundle\Example
+
+services:
+#    acme_rentacar.example:
+#        class: %acme_rentacar.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
