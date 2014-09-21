@@ -125,4 +125,313 @@ class Reservation
     private $user;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set departureAt
+     *
+     * @param \DateTime $departureAt
+     * @return Reservation
+     */
+    public function setDepartureAt($departureAt)
+    {
+        $this->departureAt = $departureAt;
+
+        return $this;
+    }
+
+    /**
+     * Get departureAt
+     *
+     * @return \DateTime 
+     */
+    public function getDepartureAt()
+    {
+        return $this->departureAt;
+    }
+
+    /**
+     * Set returnAt
+     *
+     * @param \DateTime $returnAt
+     * @return Reservation
+     */
+    public function setReturnAt($returnAt)
+    {
+        $this->returnAt = $returnAt;
+
+        return $this;
+    }
+
+    /**
+     * Get returnAt
+     *
+     * @return \DateTime 
+     */
+    public function getReturnAt()
+    {
+        return $this->returnAt;
+    }
+
+    /**
+     * Set hasInsurance
+     *
+     * @param boolean $hasInsurance
+     * @return Reservation
+     */
+    public function setHasInsurance($hasInsurance)
+    {
+        $this->hasInsurance = $hasInsurance;
+
+        return $this;
+    }
+
+    /**
+     * Get hasInsurance
+     *
+     * @return boolean 
+     */
+    public function getHasInsurance()
+    {
+        return $this->hasInsurance;
+    }
+
+    /**
+     * Set carSubtotal
+     *
+     * @param string $carSubtotal
+     * @return Reservation
+     */
+    public function setCarSubtotal($carSubtotal)
+    {
+        $this->carSubtotal = $carSubtotal;
+
+        return $this;
+    }
+
+    /**
+     * Get carSubtotal
+     *
+     * @return string 
+     */
+    public function getCarSubtotal()
+    {
+        return $this->carSubtotal;
+    }
+
+    /**
+     * Set optionSubtotal
+     *
+     * @param string $optionSubtotal
+     * @return Reservation
+     */
+    public function setOptionSubtotal($optionSubtotal)
+    {
+        $this->optionSubtotal = $optionSubtotal;
+
+        return $this;
+    }
+
+    /**
+     * Get optionSubtotal
+     *
+     * @return string 
+     */
+    public function getOptionSubtotal()
+    {
+        return $this->optionSubtotal;
+    }
+
+    /**
+     * Set totalAmount
+     *
+     * @param string $totalAmount
+     * @return Reservation
+     */
+    public function setTotalAmount($totalAmount)
+    {
+        $this->totalAmount = $totalAmount;
+
+        return $this;
+    }
+
+    /**
+     * Get totalAmount
+     *
+     * @return string 
+     */
+    public function getTotalAmount()
+    {
+        return $this->totalAmount;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return Reservation
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string 
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Reservation
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Reservation
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set carClass
+     *
+     * @param \Acme\RentacarBundle\Entity\CarClass $carClass
+     * @return Reservation
+     */
+    public function setCarClass(\Acme\RentacarBundle\Entity\CarClass $carClass = null)
+    {
+        $this->carClass = $carClass;
+
+        return $this;
+    }
+
+    /**
+     * Get carClass
+     *
+     * @return \Acme\RentacarBundle\Entity\CarClass 
+     */
+    public function getCarClass()
+    {
+        return $this->carClass;
+    }
+
+    /**
+     * Set departureLocation
+     *
+     * @param \Acme\RentacarBundle\Entity\Location $departureLocation
+     * @return Reservation
+     */
+    public function setDepartureLocation(\Acme\RentacarBundle\Entity\Location $departureLocation = null)
+    {
+        $this->departureLocation = $departureLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get departureLocation
+     *
+     * @return \Acme\RentacarBundle\Entity\Location 
+     */
+    public function getDepartureLocation()
+    {
+        return $this->departureLocation;
+    }
+
+    /**
+     * Set returnLocation
+     *
+     * @param \Acme\RentacarBundle\Entity\Location $returnLocation
+     * @return Reservation
+     */
+    public function setReturnLocation(\Acme\RentacarBundle\Entity\Location $returnLocation = null)
+    {
+        $this->returnLocation = $returnLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get returnLocation
+     *
+     * @return \Acme\RentacarBundle\Entity\Location 
+     */
+    public function getReturnLocation()
+    {
+        return $this->returnLocation;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Acme\RentacarBundle\Entity\User $user
+     * @return Reservation
+     */
+    public function setUser(\Acme\RentacarBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Acme\RentacarBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
