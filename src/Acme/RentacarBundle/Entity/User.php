@@ -3,6 +3,8 @@
 namespace Acme\RentacarBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * User
@@ -256,6 +258,7 @@ class User
      *
      * @param \DateTime $updatedAt
      * @return User
+     * @Gedmo\Timestampable(on="create")
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -268,6 +271,7 @@ class User
      * Get updatedAt
      *
      * @return \DateTime 
+     * @Gedmo\Timestampable(on="update")
      */
     public function getUpdatedAt()
     {
