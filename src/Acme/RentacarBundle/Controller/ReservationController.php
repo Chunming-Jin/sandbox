@@ -2,9 +2,9 @@
 
 namespace Acme\RentacarBundle\Controller;
 
-use Sensio¥Bundle¥FrameworkExtraBundle¥configuration¥Route;
-use Sensio¥Bundle¥FrameworkExtraBundle¥Configuration¥Template;
-use Symfony¥Component¥HttpFoundtion¥Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
 * ReservationController.
@@ -16,13 +16,13 @@ use Symfony¥Component¥HttpFoundtion¥Request;
 
 class ReservationController extends AppController
 {
-	/**
+    /**
 	* @Route("/", name="reservation")
 	* @Template
 	*/
 	public function indexAction(Request $request)
 	{
-		return array();
+        return array();
 	}
 	
 	/**
@@ -31,6 +31,11 @@ class ReservationController extends AppController
 	*/
 	public function newAction(Request $request)
 	{
+	    if ($request->getMethod())
+	    {
+	        return $this->redirect($this->generateUrl('reservation_car'));
+	    }
+	    
 		return array();
 	}
 	
@@ -40,7 +45,12 @@ class ReservationController extends AppController
 	*/
 	public function carAction(Request $request)
 	{
-		return array();
+	    if ($request->getMethod())
+	    {
+	        return $this->redirect($this->generateUrl('reservation_option'));
+	    }
+	    
+        return array();
 	}
 	
 	/**
@@ -49,14 +59,19 @@ class ReservationController extends AppController
 	*/
 	public function optionAction(Request $request)
 	{
+	    if ($request->getMethod())
+	    {
+	        return $this->redirect($this->generateUrl('reservation_confirm'));
+	    }
+	
 		return array();
 	}
 	
 	/**
-	* @Route("/confirm", name="reservation_confrim")
+	* @Route("/confirm", name="reservation_confirm")
 	* @Template
 	*/
-	public function confrimAction(Request $request)
+	public function confirmAction(Request $request)
 	{
 		return array();
 	}

@@ -1,0 +1,12 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title 'HOME' %}
+{% set menu='home' %}
+
+{% block content %}
+<div>
+    <a herf="{{ path('reservation_new') }}" class="btn large info">GO TO RESERVATION PAGE</a>
+</div>
+{% endblock content %}
+
+

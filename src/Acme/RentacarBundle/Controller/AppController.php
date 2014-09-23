@@ -1,8 +1,8 @@
-<? php
+<?php
 
 namespace Acme\RentacarBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
 * AppController
