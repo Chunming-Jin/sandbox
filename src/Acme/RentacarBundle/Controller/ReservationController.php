@@ -6,6 +6,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
+use Acme\RentacarBundle\Entity\Reservation;
+use Acme\RentacarBundle\Form\ReservationLocationType;
+
+
 /**
 * ReservationController.
 * 
@@ -31,12 +35,10 @@ class ReservationController extends AppController
 	*/
 	public function newAction(Request $request)
 	{
-	    if ($request->getMethod())
-	    {
-	        return $this->redirect($this->generateUrl('reservation_car'));
-	    }
-	    
-		return array();
+        $reservation = new Reservation();
+        $form = $this->createForm(new ReservationLocationType(), $reservation);
+        
+        return array('form' => $form->createView());
 	}
 	
 	/**

@@ -127,7 +127,16 @@ class Reservation
      */
     private $user;
 
-
+    /**
+     * Constructor .
+     */
+    public function __construct()
+    {
+        $this->departureAt = new \DateTime();
+        $this->departureAt->setTime(0, 0);
+        $this->returnAt = new \DateTime();
+        $this->returnAt->setTime(0, 0);
+    }
 
     /**
      * Get id
