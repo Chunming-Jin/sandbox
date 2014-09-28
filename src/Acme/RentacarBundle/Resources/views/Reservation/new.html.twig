@@ -4,13 +4,14 @@
 {% set menu = 'reservation' %}
 
 {% block content %}
-<form action="{{ path('reservation_new') }}" mothod="post">
+<form action="{{ path('reservation_new') }}" method="post">
     {{ form_errors(form) }}
     <fieldset>
         <legend>出着情報入力</legend>
         <div class="control-group">
             <label class="control-label">出発</label>
             <div class="controls">
+                {{ form_errors(form.departureAt) }}
                 {{ form_widget(form.departureAt, {'attr' : {'class' : 'input-datetime'}}) }}
                 {{ form_errors(form.departureLocation) }}
                 {{ form_widget(form.departureLocation) }} 
@@ -25,6 +26,7 @@
                 {{ form_widget(form.returnLocation) }}
             </div>
         </div>
+        {{ form_rest(form) }}
         <div class="form-actions">
             <input type="submit" class="btn btn-primary" value="車種選択へ進む">
         </div>

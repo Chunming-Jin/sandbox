@@ -20,21 +20,31 @@ class ReservationLocationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('departureAt')
+            ->add('departureAt', 'datetime')
             ->add('departureLocation')
-            ->add('returnAt')
+            ->add('returnAt', 'datetime')
             ->add('returnLocation')
         ;
     }
-     
     
-     /* (non-PHPdoc)
-      * @see \Symfony\Component\Form\FormTypeInterface::getName()
-      */
-     public function getName() 
-     {
-        return 'reservation_location';    
-     }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getName()
+    {
+        return 'reservation_location';
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+                     'validation_groups' => array('reservation_location'),
+                     );
+    }
 
 }
 

@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -23,12 +23,14 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
-    translator:      { fallback: "%locale%" }
 
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - "AcmeRentacarBundle::form.html.twig"       
 
 # Assetic Configuration
 assetic:
@@ -74,3 +76,4 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+

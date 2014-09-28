@@ -38,6 +38,25 @@ class ReservationController extends AppController
         $reservation = new Reservation();
         $form = $this->createForm(new ReservationLocationType(), $reservation);
         
+        if ($request->getMethod() === 'POST')
+        {
+            $data = $request->request->get($form->getName());
+            $form->submit($data);
+            if ($form->isValid())
+            {
+                $request->getSession()->set('reservation/location', $data);
+                return $this->redirect($this->generateUrl('reservation_car'));
+            }
+        }
+//        elseif ($request->getSession()->has('reservation/location'))
+//        {
+//            echo ("here?");
+//            
+//            $data = $request->getSession()->get('reservation/location');
+//            $data['_token'] = $form['_token']->getData();
+//            $form->submit($data);
+//        }
+        
         return array('form' => $form->createView());
 	}
 	
@@ -47,7 +66,7 @@ class ReservationController extends AppController
 	*/
 	public function carAction(Request $request)
 	{
-	    if ($request->getMethod())
+	    if ($request->getMethod() === 'POST')
 	    {
 	        return $this->redirect($this->generateUrl('reservation_option'));
 	    }
@@ -61,7 +80,7 @@ class ReservationController extends AppController
 	*/
 	public function optionAction(Request $request)
 	{
-	    if ($request->getMethod())
+        if ($request->getMethod() === 'POST')
 	    {
 	        return $this->redirect($this->generateUrl('reservation_confirm'));
 	    }
