@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Acme\RentacarBundle\Entity\Reservation;
 use Acme\RentacarBundle\Form\ReservationLocationType;
+use Acme\RentacarBundle\Form\ReservationCarType;
 
 
 /**
@@ -48,14 +49,12 @@ class ReservationController extends AppController
                 return $this->redirect($this->generateUrl('reservation_car'));
             }
         }
-//        elseif ($request->getSession()->has('reservation/location'))
-//        {
-//            echo ("here?");
-//            
-//            $data = $request->getSession()->get('reservation/location');
-//            $data['_token'] = $form['_token']->getData();
-//            $form->submit($data);
-//        }
+        elseif ($request->getSession()->has('reservation/location'))
+        {
+            $data = $request->getSession()->get('reservation/location');
+            $data['_token'] = $form['_token']->getData();
+            $form->submit($data);
+        }
         
         return array('form' => $form->createView());
 	}
@@ -66,13 +65,78 @@ class ReservationController extends AppController
 	*/
 	public function carAction(Request $request)
 	{
+        $reservation = new Reservation();
+        
+        if (!$this->restoreReservationForms($reservation, array('location')))
+        {
+            return $this->redirect($this->generateUrl('reservation_new'));
+        }
+        
+        $carClassRepository = $this->get('doctrine')->getRepository('AcmeRentacarBundle:CarClass');
+        $carClass = $carClassRepository->findAll();
+        
+        $form = $this->createForm(new ReservationCarType(), $reservation);
 	    if ($request->getMethod() === 'POST')
 	    {
-	        return $this->redirect($this->generateUrl('reservation_option'));
+            $data = $request->request->get($form->getName());
+            $form->submit($data);
+            
+            if ($form->isValid())
+            {
+                $request->getSession()->set('reservation/car', $data);
+                return $this->redirect($this->generateUrl('reservation_option'));
+            }
 	    }
 	    
-        return array();
+        return array(
+            'carClass'  => $carClass,
+            'form'      => $form->createView(),
+        );
 	}
+    
+    /**
+     * Restore reservation data
+     * 
+     * @param Reservation $reservation
+     * @param $formKeys
+     * @return boolean
+     */
+    private function restoreReservationForms(Reservation $reservation, array $formKeys)
+    {
+        $session = $this->getRequest()->getSession();
+        
+        $factory = $this->get('form.factory');
+        $binder = function($type, $data) use($factory, $reservation)
+        {
+            if (isset($data['_token']))
+            {
+                unset($data['_token']);
+            }
+            $form = $factory->create($type, $reservation, array('csrf_protection' => false));
+            $form->submit($data);
+            
+            return $form->isValid();
+        };
+        
+        $valid = true;
+        
+        foreach ($formKeys as $formKey)
+        {
+            switch ($formKey)
+            {
+                case 'location' :
+                    $valid = $binder(new ReservationLocationType(), $session->get('reservation/location'));
+                    break;
+                case 'car' :
+                    $valid = $binder(new ReservationCarType(), $session->get('reservation/car'));
+                    break;
+                default:
+                    throw new \InvalidArgumentExection(sprintf('Unknown form Key "%s"', $formKey));
+            }
+        }
+        
+        return $valid;
+    }
 	
 	/**
 	* @Route("/option", name="reservation_option")
